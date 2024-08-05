@@ -14,7 +14,7 @@ namespace API.Controllers
         {
             var users = await context.Users.ToListAsync();
 
-            return users;
+            return Ok(users);
         }
 
         [HttpGet("{id}")]
@@ -22,7 +22,7 @@ namespace API.Controllers
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (user == null) return NotFound();
+            if (user == null) return NotFound($"User with id {id} not found.");
             return user;
         }
     }
